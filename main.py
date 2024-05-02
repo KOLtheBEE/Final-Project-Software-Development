@@ -128,3 +128,35 @@ def tic_tac_toe():
       break
 
     current_player = 'O' if current_player == 'X' else 'X'
+
+
+#menu
+def menu():
+  print("====== Main menu ======\n")
+  print("1. Rock paper scissors\n")
+  print("2. Hangman\n")
+  print("3. Tic tac toe\n")
+  print("4. Exit\n")
+
+
+#main
+menu()
+choice = input("Select a game (1-3): ")
+while (choice != 4):
+  if choice == "1":
+    rps()
+    print("\n")
+    menu()
+    choice = input("Select a game (1-3): ")
+  elif choice == "2":
+    hangman()
+    print("\n")
+    menu()
+    choice = input("Select a game (1-3): ")
+  elif choice == "3":
+    tic_tac_toe()
+    print("\n")
+    menu()
+    choice = input("Select a game (1-3): ")
+  else:
+    choice = 4
