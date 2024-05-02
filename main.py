@@ -160,3 +160,4 @@ while (choice != 4):
     choice = input("Select a game (1-3): ")
   else:
     choice = 4
+print("Exiting...")
