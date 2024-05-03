@@ -80,56 +80,20 @@ class TestMain(unittest.TestCase):
   
     self.assertTrue(result)
 
-
-
-  # Fifth Test
-  '''
+  #Fifth Test
   @patch('sys.stdout', new_callable=StringIO)
-  @patch('builtins.input', side_effect=['A'])
-  def test_hangman_correct_letter(self, mock_input, mock_stdout):
-      # Set the word and used letters for testing
-    word_letters = {'F', 'A', 'N'}  # Mock the word letters set
-    used_letters = {'A'}  # Mock the used letters set
-
-    # Call the function with mocked sets
-    with patch('__main__.set', side_effect=[word_letters, used_letters]):
-        hangman()
-
-    # Capture the output printed by the function
-    actual_output = mock_stdout.getvalue().strip()
-
-    #print(actual_output)
+  @patch('builtins.input', side_effect=['Hello'])
+  def test_get_valid_word(self, mock_input, mock_stdout):
     
-    # Define the expected output
-    expected_output = "Lives left: 6  Letters used: A  Current word: - A -\nGuess a" \
-    "letter: "
+    word_test = ['Hello']
+    expected_result = 'HELLO'
+    
+    result = get_valid_word(word_test)
+    
+    self.assertEqual(expected_result, result)
 
     
-  
-    # Check if the actual output matches the expected output
-    self.assertEqual(actual_output, expected_output)
-  '''
-
   # Sixth Test
-  '''
-  #print("Letter is not in word.")
-  @patch('builtins.input', side_effect=['r'])
-  @patch('random.choice', return_value='r')
-  @patch('sys.stdout', new_callable=StringIO)
-  def test_hangman_incorrect_letter(self, mock_stdout, mock_random_choice, mock_input):
-    expected_output = (
-        "Letter is not in word.\n\n")
-
-    hangman()
-
-    actual_output = mock_stdout.getvalue()
-
-    print(actual_output)
-
-    self.assertEqual(actual_output, expected_output)
-  '''
-
-  #
   def test_print_board(self):
     # Redirect stdout to capture printed output
     with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
@@ -145,7 +109,7 @@ class TestMain(unittest.TestCase):
         )
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-  #
+  # Seventh Test
   def test_check_winner(self):
     # Test for horizontal win
     board_horizontal_win = [['X', 'X', 'X'], ['-', '-', '-'], ['-', '-', '-']]
@@ -160,6 +124,7 @@ class TestMain(unittest.TestCase):
     self.assertEqual(check_winner(board_diagonal_win), 'X')
 
 
+  # Eighth Test
   def test_is_board_full(self):
     # Test for full board
     full_board = [['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', 'O']]
@@ -168,7 +133,10 @@ class TestMain(unittest.TestCase):
     # Test for non-full board
     non_full_board = [['X', '-', 'X'], ['-', 'O', '-'], ['O', '-', 'O']]
     self.assertFalse(is_board_full(non_full_board))
+    
 
   # Proper command output
 if __name__ == '__main__':
   unittest.main()
+
+
